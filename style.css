@@ -1,0 +1,167 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f3fb;
+  color: #252442;
+  line-height: 1.6;
+}
+
+header {
+  background: linear-gradient(135deg, #5146a8, #7868d8);
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+}
+
+header p {
+  margin-bottom: 0;
+}
+
+main {
+  width: min(900px, 92%);
+  margin: 30px auto;
+}
+
+.note-form-section,
+.notes-section {
+  background: white;
+  padding: 24px;
+  margin-bottom: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(48, 39, 100, 0.08);
+}
+
+h2 {
+  margin-top: 0;
+  color: #5146a8;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d5d1ec;
+  border-radius: 6px;
+  font: inherit;
+}
+
+input:focus,
+textarea:focus {
+  outline: 2px solid #7868d8;
+  border-color: transparent;
+}
+
+button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background: #5146a8;
+  color: white;
+  font: inherit;
+  cursor: pointer;
+}
+
+form button {
+  align-self: flex-start;
+  margin-top: 8px;
+}
+
+button:hover:not(:disabled) {
+  background: #3d3487;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+#status {
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: #f1effb;
+}
+
+#status.loading {
+  color: #5146a8;
+}
+
+#status.success {
+  color: #176b3a;
+  background: #e8f7ed;
+}
+
+#status.error {
+  color: #a52232;
+  background: #fff0f1;
+}
+
+#notes-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.note-card {
+  padding: 16px;
+  border: 1px solid #e2def5;
+  border-radius: 8px;
+  overflow-wrap: anywhere;
+}
+
+.note-card h3 {
+  margin-top: 0;
+  color: #5146a8;
+}
+
+.note-card p {
+  white-space: pre-wrap;
+}
+
+.delete-btn {
+  background: #b52e47;
+}
+
+.delete-btn:hover:not(:disabled) {
+  background: #8e2035;
+}
+
+.empty-message {
+  color: #68677d;
+  padding: 12px 0;
+}
+
+@media (max-width: 600px) {
+  main {
+    width: 94%;
+    margin: 18px auto;
+  }
+
+  .note-form-section,
+  .notes-section {
+    padding: 16px;
+  }
+}
