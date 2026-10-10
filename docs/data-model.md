@@ -164,5 +164,5 @@ A NoSQL database could offer flexible document structures and horizontal scaling
 
 ```
 
-**When you've saved the file, reply “done.”** Then we'll create `architecture.md`, including the required one-million-user estimates and architecture diagram.
+
 ```

@@ -1,6 +1,10 @@
 const API_URL = "https://jsonplaceholder.typicode.com/posts";
 const MAX_TITLE_LENGTH = 100;
 
+// JSONPlaceholder is a mock API. POST and DELETE simulate server responses
+// but do not permanently save or delete data on the server.
+// The frontend updates its local notes array to mirror those responses.
+
 const loadButton = document.getElementById("load-btn");
 const form = document.getElementById("note-form");
 const titleInput = document.getElementById("title-input");
@@ -13,7 +17,6 @@ let notes = [];
 let nextKey = 1;
 let requestRunning = false;
 
-// Reusable function for API requests.
 async function request(url, options = {}) {
   const response = await fetch(url, options);
 
@@ -26,17 +29,14 @@ async function request(url, options = {}) {
   }
 
   const data = await response.json();
-
   return { data, status: response.status };
 }
 
-// Update the status message.
 function setStatus(message, type = "") {
   statusElement.textContent = message;
   statusElement.className = type;
 }
 
-// Disable buttons while a request is running.
 function setButtonsDisabled(disabled) {
   loadButton.disabled = disabled;
   submitButton.disabled = disabled;
@@ -46,7 +46,6 @@ function setButtonsDisabled(disabled) {
   });
 }
 
-// Display notes safely using textContent.
 function renderNotes() {
   notesList.replaceChildren();
 
@@ -79,7 +78,6 @@ function renderNotes() {
   });
 }
 
-// Load the latest 10 notes.
 async function loadNotes() {
   if (requestRunning) return;
 
@@ -106,7 +104,6 @@ async function loadNotes() {
   }
 }
 
-// Validate and create a note.
 async function createNote(event) {
   event.preventDefault();
 
@@ -155,6 +152,7 @@ async function createNote(event) {
 
     renderNotes();
     form.reset();
+
     setStatus(`Note created successfully (ID: ${result.data.id}).`, "success");
   } catch (error) {
     setStatus(`Could not create note: ${error.message}`, "error");
@@ -164,7 +162,6 @@ async function createNote(event) {
   }
 }
 
-// Delete a note.
 async function deleteNote(key) {
   if (requestRunning) return;
 
@@ -181,8 +178,8 @@ async function deleteNote(key) {
     });
 
     notes = notes.filter((item) => item.key !== key);
-    renderNotes();
 
+    renderNotes();
     setStatus(
       `Note deleted successfully (status ${result.status}).`,
       "success",
@@ -195,7 +192,6 @@ async function deleteNote(key) {
   }
 }
 
-// Handle Delete button clicks.
 notesList.addEventListener("click", (event) => {
   const button = event.target.closest("button[data-key]");
 
@@ -204,6 +200,5 @@ notesList.addEventListener("click", (event) => {
   deleteNote(Number(button.dataset.key));
 });
 
-// Connect the page controls.
 loadButton.addEventListener("click", loadNotes);
 form.addEventListener("submit", createNote);
